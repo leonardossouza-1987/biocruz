@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Biocruz">
+<meta property="og:title" content="Biocruz | Analise de Dados & Inteligencia Estrategica">
+<meta property="og:description" content="Analytics aplicado as ciencias da vida: saude, agro, meio ambiente e biotecnologia.">
+<meta property="og:image" content="img/og-image.svg">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Biocruz | Analise de Dados & Inteligencia Estrategica">
+<meta name="twitter:description" content="Analytics aplicado as ciencias da vida.">
+<meta name="twitter:image" content="img/og-image.svg">
+<meta name="theme-color" content="#0f5132">
+<title>Solucoes | Biocruz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="header">
+  <nav class="navbar container" aria-label="Navegacao principal">
+    <a href="index.html" class="logo" aria-label="Biocruz">Bi<svg class="folha-o" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M20 3c0 6-3 12-9 15-2 1-4 1-6 1 0-3 1-7 3-10 3-4 8-6 12-6z" fill="currentColor"/><path d="M5 19c2-6 6-10 11-13" stroke="#0f5132" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg><span>cruz</span></a>
+    <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="menu-principal">
+      <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+      <li><a href="sobre.html" data-i18n="nav.sobre">Sobre</a></li>
+      <li><a href="projetos.html" class="active" data-i18n="nav.solucoes">Solucoes</a></li>
+      <li><a href="contato.html" data-i18n="nav.contato">Contato</a></li>
+      <li><a href="carreiras.html" class="btn-candidatar" data-i18n="nav.candidatar">CANDIDATAR</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="page-header">
+  <div class="container">
+    <h1>Nossas Solucoes</h1>
+    <p>8 linhas de servico para transformar dados em decisoes</p>
+  </div>
+</section>
+
+<section class="section container">
+  <div class="filtros" role="group" aria-label="Filtrar solucoes">
+    <button class="filtro-btn active" data-filtro="todos" aria-pressed="true">Todas</button>
+    <button class="filtro-btn" data-filtro="estrategia" aria-pressed="false">Estrategia</button>
+    <button class="filtro-btn" data-filtro="dados" aria-pressed="false">Dados &amp; BI</button>
+    <button class="filtro-btn" data-filtro="ia" aria-pressed="false">IA &amp; ML</button>
+    <button class="filtro-btn" data-filtro="ciencias" aria-pressed="false">Ciencias da Vida</button>
+  </div>
+
+  <div class="grid-projetos">
+    <article class="projeto" data-categoria="estrategia">
+      <div class="projeto-img" aria-hidden="true">🧭</div>
+      <div class="projeto-conteudo">
+        <h3>Consultoria e Estrategia de Dados</h3>
+        <p>Data Maturity Assessment, roadmap de dados e IA (12-36 meses), governanca, LGPD, DPIA e arquitetura lakehouse / data mesh.</p>
+        <span class="tag">Estrategia</span>
+      </div>
+    </article>
+
+    <article class="projeto" data-categoria="dados">
+      <div class="projeto-img" aria-hidden="true">📊</div>
+      <div class="projeto-conteudo">
+        <h3>Business Intelligence &amp; Analytics</h3>
+        <p>Dashboards executivos (Power BI, Tableau, Metabase), Data Warehouse / Lakehouse (Snowflake, Databricks, BigQuery) e relatorios regulatorios ANVISA, ANS e IBAMA.</p>
+        <span class="tag">Dados &amp; BI</span>
+      </div>
+    </article>
+
+    <article class="projeto" data-categoria="dados">
+      <div class="projeto-img" aria-hidden="true">⚙️</div>
+      <div class="projeto-conteudo">
+        <h3>Engenharia de Dados</h3>
+        <p>Pipelines ETL/ELT (Airflow, dbt, Fivetran), streaming em tempo real com Kafka e orquestracao de dados em escala.</p>
+        <span class="tag">Dados &amp; BI</span>
+      </div>
+    </article>
+
+    <article class="projeto" data-categoria="ia">
+      <div class="projeto-img" aria-hidden="true">🧠</div>
+      <div class="projeto-conteudo">
+        <h3>Ciencia de Dados &amp; IA</h3>
+        <p>Modelos preditivos sob medida, visao computacional (imagens medicas, satelite, microscopia), NLP aplicado a laudos e prontuarios, LLMs corporativos e MLOps.</p>
+        <span class="tag">IA &amp; ML</span>
+      </div>
+    </article>
+
+    <article class="projeto" data-categoria="ciencias">
+      <div class="projeto-img" aria-hidden="true">🧬</div>
+      <div class="projeto-conteudo">
+        <h3>Bioinformatica &amp; Omicas</h3>
+        <p>Pipelines genomicos (NGS, RNA-seq, metagenomica), analise de variantes, GWAS, integracao multi-omica e visualizacao de redes biologicas.</p>
+        <span class="tag">Ciencias da Vida</span>
+      </div>
+    </article>
+
+    <article class="projeto" data-categoria="ciencias">
+      <div class="projeto-img" aria-hidden="true">🛰️</div>
+      <div class="projeto-conteudo">
+        <h3>Geoespacial &amp; Ambiental</h3>
+        <p>Sensoriamento remoto (Sentinel, Landsat, Planet), NDVI, mapas de uso do solo, desmatamento, modelagem climatica e rastreabilidade de cadeia agro.</p>
+        <span class="tag">Ciencias da Vida</span>
+      </div>
+    </article>
+
+    <article class="projeto" data-categoria="ciencias">
+      <div class="projeto-img" aria-hidden="true">🏥</div>
+      <div class="projeto-conteudo">
+        <h3>Saude Digital</h3>
+        <p>Prontuario eletronico e interoperabilidade (HL7/FHIR), predicao de readmissao e sepse, otimizacao de leitos, escalas, insumos e vigilancia epidemiologica.</p>
+        <span class="tag">Ciencias da Vida</span>
+      </div>
+    </article>
+
+    <article class="projeto" data-categoria="estrategia">
+      <div class="projeto-img" aria-hidden="true">🎓</div>
+      <div class="projeto-conteudo">
+        <h3>Capacitacao &amp; Educacao</h3>
+        <p>Trilhas de Data Literacy, bootcamps (Python, R, SQL, BI), workshops executivos e mentoria para equipes internas.</p>
+        <span class="tag">Estrategia</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="cotacoes-carrossel" aria-label="Cotacoes agropecuarias em tempo real">
+      <div class="cotacoes-track" id="cotacoesTrack">
+        <div class="cotacao-item"><span class="cotacao-label">Carregando cotacoes...</span></div>
+      </div>
+    </div>
+    <div class="footer-content">
+      <div class="footer-col">
+        <p class="footer-brand">Bio<strong>cruz</strong></p>
+        <p>Analise de Dados &amp; Inteligencia Estrategica para as ciencias da vida.</p>
+        <p class="footer-cnpj">CNPJ 00.000.000/0001-00 &mdash; Cruzilia/MG</p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-titulo">Contato</p>
+        <p><a href="mailto:contato@biocruz.com.br">contato@biocruz.com.br</a></p>
+        <p><a href="mailto:cruziliadev@gmail.com">cruziliadev@gmail.com</a></p>
+        <p><a href="tel:+5521979505028">(21) 97950-5028</a></p>
+        <p><a href="https://wa.me/5521979505028?text=Ola%20Biocruz!%20Gostaria%20de%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener" class="footer-whatsapp">💬 WhatsApp</a></p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-titulo">Institucional</p>
+        <p><a href="sobre.html">Sobre a Biocruz</a></p>
+        <p><a href="carreiras.html">Trabalhe conosco</a></p>
+        <p><a href="politica-privacidade.html">Politica de Privacidade</a></p>
+        <p><a href="politica-privacidade.html#lgpd">LGPD</a></p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-titulo">Redes</p>
+        <p><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></p>
+        <p><a href="https://github.com/leonardossouza-1987/Caixa-Preta-Dev" target="_blank" rel="noopener">GitHub</a></p>
+        <p><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Biocruz. Todos os direitos reservados.</p>
+      <p>Selo LGPD &middot; Respondemos em ate 1 dia util</p>
+    </div>
+  </div>
+</footer>
+<script src="js/script.js"></script>
+<script src="js/cotacoes.js"></script>
+<script src="js/i18n.js"></script>
+</body>
+</html>

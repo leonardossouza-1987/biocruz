@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Biocruz">
+<meta property="og:title" content="Biocruz | Analise de Dados & Inteligencia Estrategica">
+<meta property="og:description" content="Analytics aplicado as ciencias da vida: saude, agro, meio ambiente e biotecnologia.">
+<meta property="og:image" content="img/og-image.svg">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Biocruz | Analise de Dados & Inteligencia Estrategica">
+<meta name="twitter:description" content="Analytics aplicado as ciencias da vida.">
+<meta name="twitter:image" content="img/og-image.svg">
+<meta name="theme-color" content="#0f5132">
+<title>Contato | Biocruz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="header">
+  <nav class="navbar container" aria-label="Navegacao principal">
+    <a href="index.html" class="logo" aria-label="Biocruz">Bi<svg class="folha-o" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M20 3c0 6-3 12-9 15-2 1-4 1-6 1 0-3 1-7 3-10 3-4 8-6 12-6z" fill="currentColor"/><path d="M5 19c2-6 6-10 11-13" stroke="#0f5132" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg><span>cruz</span></a>
+    <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="menu-principal">
+      <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+      <li><a href="sobre.html" data-i18n="nav.sobre">Sobre</a></li>
+      <li><a href="projetos.html" data-i18n="nav.solucoes">Solucoes</a></li>
+      <li><a href="contato.html" class="active" data-i18n="nav.contato">Contato</a></li>
+      <li><a href="carreiras.html" class="btn-candidatar" data-i18n="nav.candidatar">CANDIDATAR</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="page-header">
+  <div class="container">
+    <h1>Fale Conosco</h1>
+    <p>Vamos conversar sobre o seu desafio em saude, agro, ambiente ou biotech</p>
+  </div>
+</section>
+
+<section class="section container contato-grid">
+  <form id="formContato" novalidate>
+    <div class="form-group">
+      <label for="nome">Nome completo *</label>
+      <input type="text" id="nome" name="nome" required minlength="3" autocomplete="name">
+      <small class="erro" data-erro="nome" aria-live="polite"></small>
+    </div>
+    <div class="form-group">
+      <label for="email">E-mail corporativo *</label>
+      <input type="email" id="email" name="email" required autocomplete="email">
+      <small class="erro" data-erro="email" aria-live="polite"></small>
+    </div>
+    <div class="form-group">
+      <label for="empresa">Empresa / Instituicao</label>
+      <input type="text" id="empresa" name="empresa" autocomplete="organization">
+      <small class="erro" data-erro="empresa" aria-live="polite"></small>
+    </div>
+    <div class="form-group">
+      <label for="setor">Setor *</label>
+      <select id="setor" name="setor" required style="width:100%;min-height:52px;padding:.85rem 1.1rem;border:2px solid var(--borda);border-radius:14px;font-family:inherit;font-size:1rem;background:#fff">
+        <option value="">Selecione o setor...</option>
+        <option value="saude">Saude (hospital, clinica, laboratorio, operadora)</option>
+        <option value="agro">Agronegocio (agroindustria, cooperativa, agritech)</option>
+        <option value="ambiente">Meio ambiente / ESG</option>
+        <option value="biotech">Biotecnologia / Farmaceutica</option>
+        <option value="pesquisa">Universidade / Pesquisa</option>
+        <option value="outro">Outro</option>
+      </select>
+      <small class="erro" data-erro="setor" aria-live="polite"></small>
+    </div>
+    <div class="form-group">
+      <label for="mensagem">Conte-nos sobre o seu desafio *</label>
+      <textarea id="mensagem" name="mensagem" rows="5" required minlength="20"></textarea>
+      <small class="erro" data-erro="mensagem" aria-live="polite"></small>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar mensagem</button>
+    <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+  </form>
+
+  <aside class="info-contato">
+    <h3>Informacoes</h3>
+    <p><strong>E-mail</strong>contato@biocruz.com.br</p>
+    <p><strong>Telefone</strong>(21) 97950-5028</p>
+    <p><strong>Endereco</strong>Cruzilia &mdash; MG</p>
+
+    <h3 style="margin-top:2rem">Horario</h3>
+    <p>Segunda a sexta &mdash; 09h as 18h</p>
+
+    <h3 style="margin-top:2rem">Setores atendidos</h3>
+    <p>Saude, Agro, Meio Ambiente, Biotech e Pesquisa academica.</p>
+  </aside>
+</section>
+
+<section class="section container">
+  <h2 class="section-title">Onde estamos</h2>
+  <p class="section-subtitle">Cruzilia &mdash; Minas Gerais</p>
+  <div class="mapa-wrapper">
+    <iframe
+      title="Mapa de Cruzilia - MG"
+      src="https://www.openstreetmap.org/export/embed.html?bbox=-44.860%2C-21.880%2C-44.756%2C-21.797&amp;layer=mapnik&amp;marker=-21.8386%2C-44.8083"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="cotacoes-carrossel" aria-label="Cotacoes agropecuarias em tempo real">
+      <div class="cotacoes-track" id="cotacoesTrack">
+        <div class="cotacao-item"><span class="cotacao-label">Carregando cotacoes...</span></div>
+      </div>
+    </div>
+    <div class="footer-content">
+      <div class="footer-col">
+        <p class="footer-brand">Bio<strong>cruz</strong></p>
+        <p>Analise de Dados &amp; Inteligencia Estrategica para as ciencias da vida.</p>
+        <p class="footer-cnpj">CNPJ 00.000.000/0001-00 &mdash; Cruzilia/MG</p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-titulo">Contato</p>
+        <p><a href="mailto:contato@biocruz.com.br">contato@biocruz.com.br</a></p>
+        <p><a href="mailto:cruziliadev@gmail.com">cruziliadev@gmail.com</a></p>
+        <p><a href="tel:+5521979505028">(21) 97950-5028</a></p>
+        <p><a href="https://wa.me/5521979505028?text=Ola%20Biocruz!%20Gostaria%20de%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener" class="footer-whatsapp">💬 WhatsApp</a></p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-titulo">Institucional</p>
+        <p><a href="sobre.html">Sobre a Biocruz</a></p>
+        <p><a href="carreiras.html">Trabalhe conosco</a></p>
+        <p><a href="politica-privacidade.html">Politica de Privacidade</a></p>
+        <p><a href="politica-privacidade.html#lgpd">LGPD</a></p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-titulo">Redes</p>
+        <p><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></p>
+        <p><a href="https://github.com/leonardossouza-1987/Caixa-Preta-Dev" target="_blank" rel="noopener">GitHub</a></p>
+        <p><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Biocruz. Todos os direitos reservados.</p>
+      <p>Selo LGPD &middot; Respondemos em ate 1 dia util</p>
+    </div>
+  </div>
+</footer>
+<script src="js/script.js"></script>
+<script src="js/cotacoes.js"></script>
+<script src="js/i18n.js"></script>
+</body>
+</html>

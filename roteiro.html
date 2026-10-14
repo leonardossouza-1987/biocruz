@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roteiro de Apresentacao | Biocruz</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --verde-escuro:#0f5132;--verde:#1a7f4b;--verde-claro:#2ea86a;
+  --amarelo:#f7c948;--amarelo-esc:#d4a900;
+  --texto:#1a1f2e;--texto-suave:#4a5266;
+  --fundo:#ffffff;--fundo-alt:#f4f7f5;--borda:#e4e9e6;
+  --sombra:0 12px 40px rgba(10,61,41,.12);
+  --radius:16px;--radius-lg:24px;
+  --t:.35s cubic-bezier(.4,0,.2,1);
+}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  color:var(--texto);background:var(--fundo);
+  line-height:1.6;padding:2rem 1.5rem;
+  max-width:1000px;margin:0 auto;
+}
+
+/* ---------- HEADER ---------- */
+header.topo{
+  text-align:center;margin-bottom:3rem;
+  padding-bottom:2rem;border-bottom:3px solid var(--amarelo);
+}
+header.topo h1{
+  font-size:clamp(1.5rem,4vw,2.25rem);
+  color:var(--verde-escuro);font-weight:800;
+  letter-spacing:-.02em;margin-bottom:.5rem;
+}
+header.topo h1 span{color:var(--amarelo-esc)}
+header.topo p{color:var(--texto-suave);font-size:1rem;max-width:600px;margin:0 auto}
+
+/* ---------- SELETOR DE MODO ---------- */
+.seletor-modo{
+  position:sticky;top:0;z-index:100;
+  display:flex;justify-content:center;gap:.5rem;
+  padding:1rem;margin-bottom:2rem;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--borda);
+}
+.seletor-modo button{
+  padding:.6rem 1.25rem;
+  border:2px solid var(--borda);
+  background:#fff;border-radius:999px;
+  font-weight:600;font-size:.9rem;
+  color:var(--texto-suave);
+  cursor:pointer;transition:var(--t);
+  font-family:inherit;
+}
+.seletor-modo button:hover{border-color:var(--verde);color:var(--verde-escuro)}
+.seletor-modo button.ativo{background:var(--verde);color:#fff;border-color:var(--verde)}
+
+/* ---------- SLIDE DO ROTEIRO ---------- */
+.roteiro-slide{
+  background:#fff;
+  border:1px solid var(--borda);
+  border-left:6px solid var(--amarelo);
+  border-radius:var(--radius);
+  padding:1.75rem 2rem;
+  margin-bottom:1.25rem;
+  transition:var(--t);
+}
+.roteiro-slide:hover{box-shadow:var(--sombra)}
+.roteiro-numero{
+  display:inline-block;
+  background:var(--verde-escuro);color:var(--amarelo);
+  font-size:.7rem;font-weight:800;
+  padding:.3rem .75rem;border-radius:999px;
+  text-transform:uppercase;letter-spacing:.1em;
+  margin-bottom:.75rem;
+}
+.roteiro-slide h3{
+  color:var(--verde-escuro);
+  font-size:1.15rem;font-weight:700;
+  margin-bottom:1rem;
+}
+.roteiro-texto{
+  background:var(--fundo-alt);
+  border-left:4px solid var(--verde);
+  border-radius:10px;
+  padding:1.25rem 1.5rem;
+  font-size:1rem;
+  color:var(--texto);
+  line-height:1.75;
+  font-style:italic;
+}
+.roteiro-texto::before{content:'\201C';color:var(--verde);font-size:2rem;line-height:0;vertical-align:-.4em;margin-right:.25rem;font-family:Georgia,serif}
+.roteiro-texto::after{content:'\201D';color:var(--verde);font-size:2rem;line-height:0;vertical-align:-.4rem;margin-left:.25rem;font-family:Georgia,serif}
+
+/* ---------- DICAS ---------- */
+.dicas{
+  background:linear-gradient(135deg,var(--verde-escuro),var(--verde));
+  color:#fff;
+  border-radius:var(--radius-lg);
+  padding:2rem;
+  margin-top:3rem;
+}
+.dicas h2{
+  color:var(--amarelo);
+  font-size:1.25rem;font-weight:800;
+  margin-bottom:1rem;
+}
+.dicas ul{margin-left:1.5rem}
+.dicas li{margin-bottom:.6rem;font-size:.95rem;color:#d1e5d8}
+.dicas li strong{color:#fff}
+
+/* ---------- CONTROLES DE NAVEGACAO ---------- */
+.acoes-topo{
+  display:flex;justify-content:flex-end;gap:.75rem;
+  margin-bottom:1.5rem;
+}
+.acoes-topo button, .acoes-topo a{
+  padding:.5rem 1rem;
+  border:1px solid var(--borda);
+  background:#fff;
+  border-radius:10px;
+  font-size:.85rem;font-weight:600;
+  color:var(--texto-suave);
+  cursor:pointer;text-decoration:none;
+  transition:var(--t);
+  font-family:inherit;
+}
+.acoes-topo button:hover, .acoes-topo a:hover{
+  border-color:var(--verde);
+  color:var(--verde-escuro);
+}
+
+/* ---------- MOSTRAR/ESCONDER MODOS ---------- */
+body.modo-crianca .modo-tecnico{display:none}
+body.modo-tecnico .modo-crianca{display:none}
+
+@media(max-width:600px){
+  body{padding:1rem}
+  .roteiro-slide{padding:1.25rem}
+  .roteiro-texto{padding:1rem;font-size:.95rem}
+  .seletor-modo{flex-wrap:wrap}
+}
+@media print{
+  body{padding:0;max-width:none}
+  .seletor-modo,.acoes-topo{display:none}
+  .roteiro-slide{page-break-inside:avoid;border-left-width:4px}
+}
+</style>
+</head>
+<body class="modo-tecnico">
+
+<div class="acoes-topo">
+  <a href="apresentacao.html">← Voltar para apresentacao</a>
+  <button onclick="window.print()">🖨️ Imprimir</button>
+</div>
+
+<header class="topo">
+  <h1>Roteiro de Apresentacao <span>Biocruz</span></h1>
+  <p>Texto pronto para falar durante a apresentacao. Dois modos disponiveis: linguagem simples e linguagem tecnica.</p>
+</header>
+
+<div class="seletor-modo" role="group" aria-label="Escolher modo de linguagem">
+  <button data-modo="crianca" onclick="trocarModo('crianca')">👧 Crianca de 7 anos</button>
+  <button data-modo="tecnico" class="ativo" onclick="trocarModo('tecnico')">💻 Estudante de programacao</button>
+</div>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 1</span>
+  <h3>Capa</h3>
+  <div class="roteiro-texto modo-crianca">Oi! Eu sou o Leonardo. Eu criei um site para uma empresa que ainda nao existe, mas que eu inventei! Ela se chama <strong>Biocruz</strong>. E uma empresa que ajuda as pessoas a entenderem coisas importantes usando numeros e computadores. E como se fosse um detetive que descobre segredos escondidos nos numeros!</div>
+  <div class="roteiro-texto modo-tecnico">Esse e o projeto <strong>Biocruz</strong>, uma empresa ficticia de engenharia de dados aplicada as ciencias da vida. Foi meu Projeto Integrador de Front-End. O escopo era entregar um site funcional com HTML, CSS e JavaScript puros, sem frameworks, cobrindo os 10 requisitos do professor.</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 2</span>
+  <h3>Objetivo do trabalho</h3>
+  <div class="roteiro-texto modo-crianca">Meu professor pediu para eu fazer um site de verdade, como se fosse para uma empresa real. E eu precisava usar tres ferramentas magicas: o <strong>HTML</strong>, que e como o esqueleto do site; o <strong>CSS</strong>, que e a roupa e a pintura; e o <strong>JavaScript</strong>, que e o cerebro que faz as coisas se moverem quando voce clica.</div>
+  <div class="roteiro-texto modo-tecnico">O professor pediu um site responsivo, com menu de navegacao, pelo menos 2 funcionalidades JS e um formulario validado. Pensei em como agregar valor: entreguei <strong>16 funcionalidades</strong>, uma <strong>API externa real</strong> de cotacoes agro e <strong>i18n com 5 idiomas</strong>, incluindo suporte a RTL. Tudo em vanilla JS, sem dependencia de build.</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 3</span>
+  <h3>A empresa Biocruz</h3>
+  <div class="roteiro-texto modo-crianca">A Biocruz e uma empresa que ajuda medicos, fazendeiros e cientistas. Ela pega um monte de numeros, olha para eles com atencao e descobre coisas legais. Por exemplo: 'esse remedio funciona?', 'essa plantacao vai crescer bem?', 'esse rio esta limpo?'. E como um superpoder de ver o futuro com numeros!</div>
+  <div class="roteiro-texto modo-tecnico">A Biocruz e uma consultoria <strong>verticalizada</strong> em saude, agro, meio ambiente e biotech. Em vez de fazer um site generico de 'empresa de tecnologia', resolvi modelar o conteudo com base em um briefing detalhado: 8 linhas de servico, stack tecnologica, personas de cliente. Isso me forcou a pensar em UX de verdade, nao so em codigo.</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 4</span>
+  <h3>O problema do usuario</h3>
+  <div class="roteiro-texto modo-crianca">Sabe quando voce esta doente e precisa de um medico que entenda do seu problema? As empresas tambem precisam de ajuda de alguem que entenda do trabalho delas. E e ai que a Biocruz entra! Ela entende de bichos, plantas, saude e computadores ao mesmo tempo. Ninguem mais sabe fazer tudo isso junto.</div>
+  <div class="roteiro-texto modo-tecnico">O problema nao era 'fazer um site'. Era 'convencer um CTO de healthtech ou um diretor de hospital de que essa consultoria entende do dominio deles'. Isso muda as decisoes: preciso de cases com numeros, compliance visivel (LGPD, ANVISA), e segmentacao clara por setor. A arquitetura da informacao veio dai.</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 5</span>
+  <h3>Como eu pensei (UX)</h3>
+  <div class="roteiro-texto modo-crianca">Antes de fazer o site, eu fiz como um arquiteto: primeiro desenhei tudo no papel! Eu pensei: 'o que a pessoa que vai entrar no site quer ver primeiro?'. E como arrumar o quarto antes da visita chegar - cada coisa no lugar certo para ficar bonito e facil de achar.</div>
+  <div class="roteiro-texto modo-tecnico">Antes de codar, fiz o fluxo classico de UX: <strong>pesquisa &rarr; personas &rarr; jornada &rarr; wireframe</strong>. Nao e metodologia decorativa - cada decisao de layout depois tem rastreabilidade. Por exemplo, o botao 'CANDIDATAR' em amarelo no menu existe porque na fase de wireframe percebi que ele estava escondido demais.</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 6</span>
+  <h3>Pesquisa com usuarios</h3>
+  <div class="roteiro-texto modo-crianca">Eu imaginei que estava conversando com 5 pessoas diferentes: um medico, uma fazendeira, uma moca que cuida da natureza, um chefe de computadores e um cientista. Cada um me contou o que queria. Foi como fazer uma pesquisa na escola, mas com adultos de verdade!</div>
+  <div class="roteiro-texto modo-tecnico">Simulei 5 entrevistas com decisores (hospital, cooperativa, ONG, healthtech, pesquisa). Cada um me deu uma dor diferente. O diretor de hospital desconfia de IA em saude; o CTO de healthtech quer ver stack tecnica. Isso virou requisito: precisava de cases com numeros <strong>e</strong> uma secao tecnica no Sobre. Nenhum dos dois sozinho bastava.</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 7</span>
+  <h3>Personas</h3>
+  <div class="roteiro-texto modo-crianca">Eu criei tres 'amigos imaginarios' para entender melhor. Um e o <strong>Doutor Ricardo</strong>, que cuida de hospital. Outra e a <strong>Camila</strong>, que cuida de plantacao. E o <strong>Andre</strong>, que e muito bom com computadores. Eles me ajudaram a saber o que colocar no site para agradar todo mundo.</div>
+  <div class="roteiro-texto modo-tecnico">Modelei 3 personas. <strong>Dr. Ricardo</strong> (diretor, 52) - desconfia de IA, precisa de prova social e LGPD. <strong>Camila</strong> (cooperativa, 38) - nao sabe por onde comecar, precisa de servicos claros e contato facil. <strong>Andre</strong> (CTO, 31) - quer stack e integracao HL7/FHIR. Cada card de servico, cada CTA e cada secao foi pensado para pelo menos uma dessas tres.</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 8</span>
+  <h3>Jornada do usuario</h3>
+  <div class="roteiro-texto modo-crianca">Voce ja pensou no caminho que faz da sua casa ate a escola? O site tambem tem um caminho! A pessoa entra, olha, se interessa, pergunta e decide. E como uma trilha: 'vou por aqui, olho isso, clico ali e pronto!'. Eu desenhei esse caminho para ninguem se perder.</div>
+  <div class="roteiro-texto modo-tecnico">Mapeei 6 etapas: descoberta &rarr; primeira impressao &rarr; exploracao &rarr; validacao &rarr; contato &rarr; decisao. Para cada etapa, mapeei o que o usuario pensa, o que faz e como o site ajuda. Exemplo: na etapa 'validacao', o usuario procura cases. Se nao achar, sai. Por isso inseri 3 cases com numeros na Home.</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 9</span>
+  <h3>Mapa do site</h3>
+  <div class="roteiro-texto modo-crianca">O site tem 5 portinhas magicas: <strong>Inicio</strong>, <strong>Sobre</strong>, <strong>Solucoes</strong>, <strong>Contato</strong> e <strong>Candidatar</strong>. Cada portinha leva para um lugar diferente. E como uma casa com varios quartos - cada um serve para uma coisa, e todos sao faceis de achar.</div>
+  <div class="roteiro-texto modo-tecnico">Optei por <strong>5 paginas em vez de one-page</strong>. One-page funciona para produto, mas para consultoria B2B voce precisa de profundidade por tema. Cada pagina responde a uma pergunta: <em>quem somos</em> (Sobre), <em>o que fazemos</em> (Solucoes), <em>como falo com voces</em> (Contato), <em>posso trabalhar ai?</em> (Carreiras).</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 10</span>
+  <h3>Desenho da Home</h3>
+  <div class="roteiro-texto modo-crianca">Aqui esta o desenho da primeira pagina! E como um esboco a lapis antes de pintar. Tem uma parte grande no topo para chamar atencao, depois 6 caixinhas mostrando o que a empresa faz, numeros bonitos, e la embaixo o rodape com precos de coisas do campo.</div>
+  <div class="roteiro-texto modo-tecnico">Estrutura da Home, de cima para baixo: header fixo com menu + CANDIDATAR em destaque &rarr; hero com tagline e 2 CTAs &rarr; 6 cards de linhas de atuacao &rarr; secao 'para quem trabalhamos' &rarr; diferenciais &rarr; estatisticas animadas &rarr; cases &rarr; quem lidera &rarr; CTA final &rarr; rodape com ticker de cotacoes. Cada bloco tem uma funcao na jornada.</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 11</span>
+  <h3>Desenho das internas</h3>
+  <div class="roteiro-texto modo-crianca">As outras paginas sao como continuacoes da historia. Uma fala sobre a empresa, outra mostra os servicos, outra e para conversar, e uma ultima e para quem quer trabalhar la. E como capitulos de um livro!</div>
+  <div class="roteiro-texto modo-tecnico">Sobre, Solucoes e Contato seguem o mesmo padrao visual: page-header + conteudo + rodape. Consistencia reduz carga cognitiva. A pagina de Contato ganhou um iframe de mapa (OpenStreetMap) porque o briefing pediu localizacao explicita - Cruzilia/MG.</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 12</span>
+  <h3>Carreiras + testes</h3>
+  <div class="roteiro-texto modo-crianca">Essa pagina e para quem quer trabalhar na Biocruz. A pessoa escolhe uma vaga, escreve seus dados e envia seu curriculo. Depois, eu mostrei o site para 5 amigos e eles me disseram o que podia melhorar - tipo quando a gente mostra um desenho e o amigo diz 'poe mais cor aqui!'</div>
+  <div class="roteiro-texto modo-tecnico">Carreiras foi a pagina mais complexa do ponto de vista de UX. Precisava: listar vagas, mostrar beneficios e ter um formulario completo. Testei com 5 usuarios e a decisao-chave foi <strong>auto-preencher a vaga</strong> ao clicar em 'Candidatar-se' em um card - evita o usuario ter que voltar e selecionar manualmente.</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 13</span>
+  <h3>Como deixei bonito (UI)</h3>
+  <div class="roteiro-texto modo-crianca">Eu usei 6 regrinhas magicas: <strong>ordem</strong> (cada coisa no lugar), <strong>cores certas</strong> (que todo mundo ve bem), <strong>espaco para respirar</strong> (nao deixar tudo colado), <strong>letras bonitas</strong>, <strong>avisos quando clica</strong> (tipo um 'oi' quando passa o dedo) e <strong>tudo igual</strong> (sempre o mesmo estilo).</div>
+  <div class="roteiro-texto modo-tecnico">Segui 6 principios basicos de UI: hierarquia visual (verde-escuro para titulos, cinza para corpo, amarelo para CTAs), contraste WCAG AA, espaco em branco generoso, tipografia fluida com <code>clamp()</code>, feedback em todos os estados (<code>:hover</code>, <code>:focus-visible</code>, <code>:active</code>) e consistencia via design tokens. Cada um desses tem justificativa tecnica, nao e so 'ficou bonito'.</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 14</span>
+  <h3>Cores do site</h3>
+  <div class="roteiro-texto modo-crianca">As cores tem segredos! <strong>Verde escuro</strong> e como uma arvore grande: passa confianca. <strong>Verde claro</strong> e como folhinha nova: cresce. <strong>Amarelo</strong> e como o sol: chama atencao. E <strong>branco</strong> e como uma folha limpa: deixa tudo claro e facil de ler.</div>
+  <div class="roteiro-texto modo-tecnico">A paleta e intencional: <strong>verde escuro <code>#0f5132</code></strong> para confianca e seriedade (saude/ciencia), <strong>verde <code>#1a7f4b</code></strong> para crescimento, <strong>amarelo <code>#f7c948</code></strong> para destacar CTAs e estados interativos, <strong>branco</strong> para respiro. Testei contraste no Chrome DevTools - algumas combinacoes precisaram de ajuste, como criar <code>--amarelo-esc</code> (#d4a900) para texto amarelo sobre branco.</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 15</span>
+  <h3>Pecas que se repetem</h3>
+  <div class="roteiro-texto modo-crianca">Sabe pecas de LEGO? Uso sempre as mesmas pecas no site! O mesmo botao, o mesmo cartaozinho, a mesma caixinha de texto. Assim tudo fica combinando e e mais facil de arrumar. E como usar as mesmas roupas em todas as fotos da familia - fica bonito e organizado.</div>
+  <div class="roteiro-texto modo-tecnico">Tudo e baseado em <strong>variaveis CSS no <code>:root</code></strong>. Cores, sombras, raios, transicoes - tudo tokenizado. Componentes (<code>btn</code>, <code>card</code>, <code>tag</code>, <code>input</code>, <code>accordion</code>) sao reutilizaveis. Isso significa que mudar a cor primaria em um lugar reflete em todo o site. Sem design system, seria inviavel manter consistencia em 6 paginas.</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 16</span>
+  <h3>Lista de tudo que eu fiz</h3>
+  <div class="roteiro-texto modo-crianca">O professor pediu 10 coisas. Eu fiz todas as 10! E olha so: ele pediu so 2 funcionalidades e eu fiz <strong>16</strong>! E como se a professora pedisse uma redacao de 10 linhas e voce escrevesse 80 - so que bem feita!</div>
+  <div class="roteiro-texto modo-tecnico">Os 10 requisitos estao atendidos. Dois merecem destaque: <strong>#6</strong> pedia 2 funcionalidades JS, entreguei 16; <strong>#9</strong> pedia testes, documentei 15 casos em <code>TESTES.md</code> com tabela de correcoes. O resto e padrao: HTML semantico, CSS responsivo em 3 breakpoints, formularios validados com regex e mascaras, e codigo organizado em <code>css/</code>, <code>js/</code> e <code>img/</code>.</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 17</span>
+  <h3>O esqueleto do site (HTML)</h3>
+  <div class="roteiro-texto modo-crianca">O HTML e como os ossos do corpo. Sem ele, o site nao fica em pe! Ele diz: 'isso aqui e o cabecalho, isso e o meio, isso e o pe'. E como montar um quebra-cabeca - cada pecinha no lugar certo.</div>
+  <div class="roteiro-texto modo-tecnico">Uso <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code>. A navegacao tem <code>aria-label</code>, o botao hamburguer tem <code>aria-expanded</code> e <code>aria-controls</code>, os formularios tem <code>aria-live</code> nos erros e <code>aria-invalid</code> nos campos. Nao e acessibilidade decorativa - e testavel com leitor de tela. Cada pagina passa por auditoria com axe DevTools.</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 18</span>
+  <h3>A roupa do site (CSS)</h3>
+  <div class="roteiro-texto modo-crianca">O CSS e como a roupa e a maquiagem. Ele pinta, arruma, da charme! Sem CSS, o site fica feio, so texto preto no fundo branco. Com CSS, ele fica colorido, com botoes redondos e caixas bonitas.</div>
+  <div class="roteiro-texto modo-tecnico">O CSS esta dividido em <strong>10 secoes comentadas</strong>: reset, componentes, header, carrossel, secoes, projetos, contato, footer, acessibilidade e responsivo. Nao uso <code>!important</code> (exceto no modo leve), nao uso ID para estilo (so para <code>getElementById</code> em JS) e mantenho especificidade baixa - classes simples, sem aninhamento profundo.</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 19</span>
+  <h3>O site em qualquer tela</h3>
+  <div class="roteiro-texto modo-crianca">O site funciona no computador grande, no tablet e no celular pequenininho. E como uma camiseta que serve em todo mundo! Quando a tela e pequena, o menu vira um botaozinho com tres risquinhos, e quando voce clica, ele abre. E magica!</div>
+  <div class="roteiro-texto modo-tecnico">Tres breakpoints: desktop (padrao), <code>&le;768px</code> (tablet/celular grande) e <code>&le;480px</code> (celular pequeno). Em <code>&le;768px</code> o menu vira hamburguer e os grids viram 1 coluna. Em <code>&le;480px</code> os botoes viram full-width e o rodape centraliza. Uso <code>clamp()</code> para tipografia fluida - evita media queries para cada tamanho de fonte.</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 20</span>
+  <h3>As 16 magicas do site</h3>
+  <div class="roteiro-texto modo-crianca">O JavaScript faz 16 truques no site! O menu abre e fecha, o carrossel gira sozinho, os numeros sobem como foguete, os cartoes se mexem quando voce passa o mouse, e quando voce preenche um formulario errado, ele avisa 'ei, falta isso aqui!'. E como um magico fazendo varios truques ao mesmo tempo!</div>
+  <div class="roteiro-texto modo-tecnico">Lista completa: 1) menu mobile, 2) barra de progresso, 3) sombra do header, 4) cursor custom, 5) particulas no hero, 6) scroll reveal, 7) carrossel, 8) contador animado, 9) accordion, 10) filtro de projetos, 11) tilt 3D, 12) ripple, 13) voltar ao topo, 14) validacao de contato, 15) validacao de candidatura com CPF e upload, 16) modo leve. Tudo em vanilla JS, dentro de <code>DOMContentLoaded</code>, sem variaveis globais.</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 21</span>
+  <h3>Mostrando como funciona</h3>
+  <div class="roteiro-texto modo-crianca">Aqui esta o segredo por dentro! Esse pedaco de codigo e como uma receita de bolo: uma lista de passos. Ele confere se o numero do CPF e de verdade, conta um, dois, tres... e se estiver errado, nao deixa passar. E como um guarda na porta conferindo se voce tem o cracha certo!</div>
+  <div class="roteiro-texto modo-tecnico">Tres exemplos: <strong>(1)</strong> validacao de CPF com os dois digitos verificadores - uso aritmetica modular, sem lib; <strong>(2)</strong> <code>IntersectionObserver</code> para o contador animado - mais performatico que <code>scroll</code> event, roda so quando o elemento entra na viewport; <strong>(3)</strong> carrossel com autoplay + swipe + teclado - o swipe trata <code>dx</code> e <code>dy</code> para nao conflitar com scroll vertical da pagina.</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 22</span>
+  <h3>Coisas que vem de fora</h3>
+  <div class="roteiro-texto modo-crianca">Duas coisas legais no site vem de fora: os <strong>precos do boi, da soja e do milho</strong> aparecem em tempo real, como um relogio que sempre atualiza. E o site fala <strong>5 idiomas</strong>, incluindo japones e arabe - que escreve de tras para frente! E como ter um tradutor magico dentro do site.</div>
+  <div class="roteiro-texto modo-tecnico">Duas integracoes: <strong>(1)</strong> ticker de commodities via API publica <code>agrodocai.com.br/api/v1/cotacao</code> - fetch a cada 10 min, dados de boi gordo, soja, milho e vaca gorda, com fallback silencioso se a API cair; <strong>(2)</strong> sistema i18n caseiro com 5 idiomas (PT, EN, JA, ZH, AR) usando atributo <code>data-i18n</code> + dicionario JS, com deteccao automatica de RTL para arabe e persistencia em <code>localStorage</code>.</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 23</span>
+  <h3>Para todo mundo usar</h3>
+  <div class="roteiro-texto modo-crianca">Eu fiz o site pensando em todo mundo: quem nao enxerga bem, quem usa o teclado em vez do mouse, quem prefere menos animacao. E como uma rampa de cadeira de rodas: o site fica acessivel para todo mundo entrar. Isso e muito importante!</div>
+  <div class="roteiro-texto modo-tecnico">Navegacao completa por teclado (Tab, Enter, setas), foco visivel com <code>:focus-visible</code> (contorno amarelo de 3px), ARIA em todos os componentes interativos, alt descritivo em imagens, respeito a <code>prefers-reduced-motion</code> e um <strong>modo leve</strong> opcional que desliga particulas e cursor custom - util para maquinas fracas ou usuarios que preferem menos animacao.</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 24</span>
+  <h3>Os testes</h3>
+  <div class="roteiro-texto modo-crianca">Antes de terminar, eu testei tudo 15 vezes! E como quando voce faz um bolo e prova antes de servir. Achei 5 coisinhas erradas e consertei. Por exemplo: o amarelo era dificil de ler no branco, entao escureci ele um pouquinho.</div>
+  <div class="roteiro-texto modo-tecnico">Documentei 15 casos em <code>TESTES.md</code>. Cobre: navegacao, carrossel (autoplay, swipe, teclado), responsividade em 375px, validacao de CPF/e-mail/upload, aceite LGPD e contador. Encontrei 5 problemas e todos tem correcao registrada. Exemplo: o amarelo <code>#f7c948</code> sobre branco falhava no contraste WCAG AA - criei a variante <code>#d4a900</code> especificamente para texto.</div>
+</article>
+
+<article class="roteiro-slide">
+  <span class="roteiro-numero">Slide 25</span>
+  <h3>Fim</h3>
+  <div class="roteiro-texto modo-crianca">E pronto! Eu fiz um site de verdade, com muitas coisas legais, que funciona em qualquer tela, com 16 magicas de JavaScript, precos que atualizam sozinhos e ate 5 idiomas! Agora da so um comando no computador e ele abre. Foi muito legal criar tudo isso. Obrigado!</div>
+  <div class="roteiro-texto modo-tecnico">Rodar e trivial: <code>cd ~/biocruz &amp;&amp; python3 -m http.server 8001</code>. Sem build, sem dependencia, sem <code>npm install</code>. O projeto fica em ~1200 linhas de HTML/CSS/JS no total. O que ficou acima do exigido: API real, i18n, acessibilidade auditada, documentacao completa. O que deixaria para uma v2: backend real para processar formularios, banco para candidaturas, autenticacao de cliente e blog tecnico para SEO.</div>
+</article>
+
+<section class="dicas">
+  <h2>Dicas para a apresentacao</h2>
+  <ul>
+    <li><strong>Domine os dois registros</strong> - se voce consegue explicar como crianca E como programador, a banca percebe que voce realmente entendeu.</li>
+    <li><strong>Aponte para a tela</strong> - mostre os cards, o botao amarelo, o codigo. Nao fique so lendo.</li>
+    <li><strong>Use os numeros</strong> - 5 paginas, 16 funcionalidades, 5 idiomas, 15 testes, 2 integracoes, 3 breakpoints, ~1200 linhas.</li>
+    <li><strong>Prepare respostas para 3 perguntas dificeis</strong> - "por que 5 paginas e nao one-page?", "como o i18n lida com RTL?", "por que o cursor custom?".</li>
+    <li><strong>Justifique trade-offs</strong> - "usei IntersectionObserver em vez de scroll event porque so dispara quando o elemento entra na viewport".</li>
+    <li><strong>Mostre o que voce NAO fez</strong> - "nao usei React porque o professor nao exigiu, e vanilla JS atende sem overhead de build".</li>
+  </ul>
+</section>
+
+<script>
+/* Alterna entre modo crianca e modo tecnico */
+function trocarModo(modo) {
+  document.body.classList.remove('modo-crianca', 'modo-tecnico');
+  document.body.classList.add('modo-' + modo);
+  document.querySelectorAll('.seletor-modo button').forEach(b => {
+    b.classList.toggle('ativo', b.dataset.modo === modo);
+  });
+  localStorage.setItem('biocruz-roteiro-modo', modo);
+}
+
+/* Restaura a preferencia salva */
+document.addEventListener('DOMContentLoaded', () => {
+  const salvo = localStorage.getItem('biocruz-roteiro-modo');
+  if (salvo === 'crianca') trocarModo('crianca');
+});
+</script>
+</body>
+</html>

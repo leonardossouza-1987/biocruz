@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apresentacao | Biocruz - Projeto Integrador</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --verde-escuro:#0f5132;--verde:#1a7f4b;--verde-claro:#2ea86a;
+  --amarelo:#f7c948;--amarelo-esc:#d4a900;
+  --texto:#1a1f2e;--texto-suave:#4a5266;
+  --fundo:#ffffff;--fundo-alt:#f4f7f5;--borda:#e4e9e6;
+  --sombra:0 12px 40px rgba(10,61,41,.12);
+  --radius:16px;--radius-lg:24px;
+  --t:.35s cubic-bezier(.4,0,.2,1);
+}
+html,body{height:100%}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--texto);background:var(--fundo);line-height:1.6;overflow:hidden}
+.progresso{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--verde),var(--amarelo));width:0%;z-index:1000;transition:width .3s ease}
+.deck{width:100vw;height:100vh;position:relative}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:3rem 5rem;opacity:0;visibility:hidden;transform:translateX(40px);transition:opacity .5s ease,transform .5s ease,visibility .5s;overflow-y:auto}
+.slide.active{opacity:1;visibility:visible;transform:translateX(0)}
+.slide h1{font-size:clamp(1.75rem,4vw,3rem);font-weight:800;color:var(--verde-escuro);letter-spacing:-.02em;line-height:1.15;margin-bottom:1.5rem}
+.slide h2{font-size:clamp(1.5rem,3vw,2.25rem);font-weight:800;color:var(--verde-escuro);letter-spacing:-.02em;line-height:1.2;margin-bottom:1.5rem}
+.slide h3{font-size:1.15rem;font-weight:700;color:var(--verde-escuro);margin:1.25rem 0 .65rem}
+.slide p{font-size:1rem;color:var(--texto-suave);margin-bottom:1rem;max-width:70ch}
+.slide p strong{color:var(--verde-escuro)}
+.slide ul,.slide ol{margin:0 0 1rem 1.5rem;color:var(--texto-suave)}
+.slide li{margin-bottom:.5rem;font-size:.95rem}
+.slide li strong{color:var(--verde-escuro)}
+.tag{display:inline-block;background:var(--amarelo);color:var(--verde-escuro);font-size:.75rem;font-weight:800;padding:.35rem .9rem;border-radius:999px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem}
+.cards-2,.cards-3,.cards-4{display:grid;gap:1.25rem;margin-bottom:1.5rem}
+.cards-2{grid-template-columns:1fr 1fr}
+.cards-3{grid-template-columns:repeat(3,1fr)}
+.cards-4{grid-template-columns:repeat(4,1fr)}
+.card{background:#fff;border:1px solid var(--borda);border-top:5px solid var(--amarelo);border-radius:var(--radius);padding:1.5rem;transition:var(--t)}
+.card:hover{box-shadow:var(--sombra);transform:translateY(-3px)}
+.card h3{margin-top:0;font-size:1rem}
+.card p{font-size:.9rem;margin-bottom:0}
+.card-icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--verde),var(--verde-claro));color:var(--amarelo);font-size:1.25rem;display:flex;align-items:center;justify-content:center;margin-bottom:.85rem}
+.card-numero{font-size:1.75rem;font-weight:800;color:var(--verde);line-height:1;margin-bottom:.5rem}
+table{width:100%;border-collapse:collapse;margin:1rem 0 1.5rem;font-size:.9rem;background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:0 2px 8px rgba(10,61,41,.08)}
+th{background:var(--verde-escuro);color:#fff;padding:.85rem 1rem;text-align:left;font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em}
+td{padding:.8rem 1rem;border-bottom:1px solid var(--borda);color:var(--texto-suave)}
+tr:nth-child(even) td{background:var(--fundo-alt)}
+tr:last-child td{border-bottom:none}
+td strong{color:var(--verde-escuro)}
+td.ok{color:var(--verde);font-weight:700}
+pre{background:var(--verde-escuro);color:#e8f5ee;padding:1.25rem 1.5rem;border-radius:var(--radius);overflow-x:auto;font-family:'JetBrains Mono',Consolas,monospace;font-size:.82rem;line-height:1.55;margin:1rem 0 1.5rem;box-shadow:var(--sombra);max-height:400px}
+pre code{color:inherit;font-family:inherit}
+pre .cmt{color:#8fa89a;font-style:italic}
+pre .key{color:#f7c948}
+pre .str{color:#a3e9c4}
+pre .fn{color:#7dd3fc}
+.wireframe{background:var(--fundo-alt);border:2px dashed var(--borda);border-radius:var(--radius);padding:1.25rem;margin:1rem 0;font-size:.8rem;color:var(--texto-suave)}
+.wire-block{background:#e4e9e6;border-radius:8px;padding:.85rem 1rem;margin-bottom:.5rem;color:var(--texto);font-weight:600;font-size:.85rem;text-align:center}
+.wire-block.destaque{background:var(--amarelo);color:var(--verde-escuro)}
+.wire-block.verde{background:var(--verde);color:#fff}
+.wire-row{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:.5rem}
+.wire-row.duas{grid-template-columns:1fr 1fr}
+.persona{background:#fff;border:1px solid var(--borda);border-radius:var(--radius);padding:1.5rem;border-left:5px solid var(--amarelo)}
+.persona-avatar{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--verde),var(--verde-claro));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.25rem;font-weight:800;margin-bottom:1rem}
+.persona h3{font-size:1rem;margin:0 0 .25rem}
+.persona .cargo{font-size:.75rem;color:var(--amarelo-esc);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.75rem}
+.persona p{font-size:.85rem;margin-bottom:.5rem}
+.persona strong{font-size:.7rem;color:var(--verde-escuro);text-transform:uppercase;letter-spacing:.05em;display:block;margin-top:.5rem}
+.controles{position:fixed;bottom:1.5rem;right:1.5rem;display:flex;align-items:center;gap:.75rem;background:#fff;border:1px solid var(--borda);border-radius:999px;padding:.5rem 1rem;box-shadow:var(--sombra);z-index:100}
+.btn-nav{width:40px;height:40px;border-radius:50%;background:var(--verde);color:#fff;border:none;font-size:1.25rem;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--t)}
+.btn-nav:hover{background:var(--amarelo);color:var(--verde-escuro)}
+.btn-nav:disabled{opacity:.3;cursor:not-allowed}
+.contador{font-weight:700;font-size:.9rem;color:var(--verde-escuro);min-width:60px;text-align:center}
+.btn-print{position:fixed;bottom:1.5rem;left:1.5rem;display:flex;align-items:center;gap:.5rem;background:var(--amarelo);color:var(--verde-escuro);border:none;border-radius:999px;padding:.85rem 1.25rem;font-weight:700;font-size:.85rem;cursor:pointer;transition:var(--t);box-shadow:var(--sombra);z-index:100}
+.btn-print:hover{background:var(--amarelo-esc);color:#fff}
+.capa{text-align:center;background:linear-gradient(135deg,#0f5132 0%,#1a7f4b 100%);color:#fff;justify-content:center;align-items:center}
+.capa h1{color:#fff;font-size:clamp(2rem,6vw,4rem);margin-bottom:.5rem}
+.capa h1 span{color:var(--amarelo)}
+.capa .subtitulo{font-size:1.25rem;color:#d1e5d8;margin-bottom:3rem;font-weight:400}
+.capa .info{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:var(--radius-lg);padding:2rem;backdrop-filter:blur(10px);max-width:600px}
+.capa .info p{color:#e8f5ee;margin-bottom:.5rem;font-size:.95rem}
+.capa .info strong{color:var(--amarelo)}
+.divisor{display:inline-block;background:var(--verde);color:#fff;font-size:.75rem;font-weight:800;padding:.35rem .9rem;border-radius:999px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:1rem}
+@media(max-width:900px){
+  .slide{padding:2rem 1.5rem}
+  .cards-2,.cards-3,.cards-4{grid-template-columns:1fr}
+  .wire-row{grid-template-columns:1fr}
+  .controles{bottom:1rem;right:1rem;padding:.4rem .75rem}
+  .btn-print{bottom:1rem;left:1rem;padding:.65rem 1rem;font-size:.75rem}
+  pre{font-size:.72rem;padding:1rem;max-height:300px}
+  table{font-size:.78rem}
+  th,td{padding:.6rem .7rem}
+}
+@media print{
+  body{overflow:visible}
+  .slide{position:relative;opacity:1;visibility:visible;transform:none;page-break-after:always;min-height:auto;padding:2rem}
+  .controles,.btn-print,.progresso{display:none}
+  pre{max-height:none}
+}
+</style>
+</head>
+<body>
+<div class="progresso" id="progresso"></div>
+<div class="deck" id="deck">
+
+<section class="slide capa active" aria-roledescription="slide" aria-label="1 de 25">
+  <h1>Bi<svg class="folha-o" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M20 3c0 6-3 12-9 15-2 1-4 1-6 1 0-3 1-7 3-10 3-4 8-6 12-6z" fill="currentColor"/><path d="M5 19c2-6 6-10 11-13" stroke="#0f5132" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg><span>cruz</span></h1>
+  <p class="subtitulo">Analise de Dados &amp; Inteligencia Estrategica</p>
+  <div class="info">
+    <p><strong>Projeto Integrador</strong> &mdash; Programador Front-End</p>
+    <p><strong>Professor:</strong> Matheus Marques</p>
+    <p><strong>Aluno:</strong> Leonardo Souza</p>
+    <p><strong>Ano:</strong> 2026</p>
+  </div>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="2 de 25">
+  <span class="divisor">Contexto</span>
+  <h2>Objetivo do trabalho</h2>
+  <p>O professor Matheus Marques propoe o desenvolvimento de um <strong>site funcional para uma empresa ficticia</strong>, aplicando HTML, CSS, JavaScript e boas praticas de front-end.</p>
+  <div class="cards-3">
+    <div class="card"><div class="card-icon">🎯</div><h3>Interface organizada</h3><p>Layout claro, hierarquia visual e navegacao intuitiva.</p></div>
+    <div class="card"><div class="card-icon">📱</div><h3>Responsiva</h3><p>Adaptavel para computadores e celulares.</p></div>
+    <div class="card"><div class="card-icon">⚡</div><h3>Funcional</h3><p>JavaScript, formularios validados e boas praticas.</p></div>
+  </div>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="3 de 25">
+  <span class="divisor">Contexto</span>
+  <h2>A empresa ficticia: Biocruz</h2>
+  <p>Consultoria verticalizada em <strong>ciencias da vida</strong>. Une rigor cientifico, engenharia de dados moderna e inteligencia de negocio.</p>
+  <div class="cards-2">
+    <div class="card"><h3>Missao</h3><p>Converter dados brutos em insights acionaveis.</p></div>
+    <div class="card"><h3>Visao</h3><p>Referencia nacional em analytics para ciencias da vida.</p></div>
+    <div class="card"><h3>Valores</h3><p>Rigor cientifico, LGPD, inovacao e sustentabilidade.</p></div>
+    <div class="card"><h3>Publico-alvo</h3><p>Hospitais, agroindustrias, ONGs, biotech e universidades.</p></div>
+  </div>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="4 de 25">
+  <span class="divisor">Contexto</span>
+  <h2>Qual problema o site resolve?</h2>
+  <p>Empresas de saude, agro, ambiente e biotech nao encontram parceiros que entendam seu dominio. O site precisa transmitir:</p>
+  <div class="cards-4">
+    <div class="card"><h3>Competencia tecnica</h3><p>Dominio de dados + ciencias da vida.</p></div>
+    <div class="card"><h3>Setorizacao</h3><p>Falar com cada publico.</p></div>
+    <div class="card"><h3>Confianca</h3><p>Cases, LGPD e transparencia.</p></div>
+    <div class="card"><h3>Facilidade</h3><p>Contato e candidatura em poucos cliques.</p></div>
+  </div>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="5 de 25">
+  <span class="divisor">UX &mdash; Experiencia do Usuario</span>
+  <h2>Metodologia UX adotada</h2>
+  <div class="cards-4">
+    <div class="card"><div class="card-numero">1</div><h3>Pesquisa</h3><p>Entrevistas com decisores.</p></div>
+    <div class="card"><div class="card-numero">2</div><h3>Personas</h3><p>3 perfis representativos.</p></div>
+    <div class="card"><div class="card-numero">3</div><h3>Jornada</h3><p>Fluxo ate a conversao.</p></div>
+    <div class="card"><div class="card-numero">4</div><h3>Wireframe</h3><p>Esbocos de baixa fidelidade.</p></div>
+  </div>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="6 de 25">
+  <span class="divisor">UX &mdash; Pesquisa</span>
+  <h2>Pesquisa com usuarios</h2>
+  <table>
+    <thead><tr><th>Perfil</th><th>Dor principal</th><th>Espera do site</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Diretor de hospital</strong></td><td>Desconfianca de IA</td><td>Cases + LGPD</td></tr>
+      <tr><td><strong>Gerente de cooperativa</strong></td><td>Nao sabe por onde comecar</td><td>Servicos claros + contato</td></tr>
+      <tr><td><strong>Gestor de ONG</strong></td><td>Orcamento limitado</td><td>Escopo definido</td></tr>
+      <tr><td><strong>CTO de healthtech</strong></td><td>Falta de parceiro tecnico</td><td>Stack visivel</td></tr>
+      <tr><td><strong>Coordenador de pesquisa</strong></td><td>Falta de rigor cientifico</td><td>Metodo e publicacoes</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="7 de 25">
+  <span class="divisor">UX &mdash; Personas</span>
+  <h2>Personas</h2>
+  <div class="cards-3">
+    <div class="persona">
+      <div class="persona-avatar">DR</div>
+      <h3>Dr. Ricardo</h3>
+      <p class="cargo">Diretor de Hospital &middot; 52 anos</p>
+      <p>Quer reduzir readmissao em 20% em 12 meses.</p>
+      <strong>Dor</strong><p>Desconfia de IA em saude.</p>
+      <strong>Espera</strong><p>Cases com numeros e LGPD.</p>
+    </div>
+    <div class="persona">
+      <div class="persona-avatar">CA</div>
+      <h3>Camila</h3>
+      <p class="cargo">Gerente de Cooperativa &middot; 38 anos</p>
+      <p>Quer usar satelite e IoT para aumentar produtividade.</p>
+      <strong>Dor</strong><p>Nao sabe por onde comecar.</p>
+      <strong>Espera</strong><p>Servicos descritos + contato rapido.</p>
+    </div>
+    <div class="persona">
+      <div class="persona-avatar">AN</div>
+      <h3>Andre</h3>
+      <p class="cargo">CTO de Healthtech &middot; 31 anos</p>
+      <p>Busca parceiro tecnico em dados clinicos.</p>
+      <strong>Dor</strong><p>Nao encontra quem domine HL7/FHIR.</p>
+      <strong>Espera</strong><p>Stack tecnica visivel.</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="8 de 25">
+  <span class="divisor">UX &mdash; Jornada</span>
+  <h2>Jornada do usuario</h2>
+  <table>
+    <thead><tr><th>Etapa</th><th>Pensa</th><th>Faz</th><th>Site ajuda com</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1. Descoberta</strong></td><td>Preciso de ajuda</td><td>Busca no Google</td><td>SEO + titulo</td></tr>
+      <tr><td><strong>2. Impressao</strong></td><td>Entendem meu setor?</td><td>Le o hero</td><td>Tagline clara</td></tr>
+      <tr><td><strong>3. Exploracao</strong></td><td>O que fazem?</td><td>Le Solucoes</td><td>6 linhas + filtro</td></tr>
+      <tr><td><strong>4. Validacao</strong></td><td>Alguem ja usou?</td><td>Procura cases</td><td>3 cases com numeros</td></tr>
+      <tr><td><strong>5. Contato</strong></td><td>Como falo?</td><td>Preenche form</td><td>Form + WhatsApp</td></tr>
+      <tr><td><strong>6. Decisao</strong></td><td>Vale a pena?</td><td>Compartilha</td><td>Open Graph</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="9 de 25">
+  <span class="divisor">UX &mdash; Arquitetura da Informacao</span>
+  <h2>Mapa do site</h2>
+  <div class="wireframe">
+    <div class="wire-block verde">Home (index.html)</div>
+    <div class="wire-row">
+      <div class="wire-block">Sobre</div>
+      <div class="wire-block">Solucoes</div>
+      <div class="wire-block">Contato</div>
+    </div>
+    <div class="wire-row duas">
+      <div class="wire-block destaque">Carreiras (CANDIDATAR)</div>
+      <div class="wire-block">Politica de Privacidade</div>
+    </div>
+  </div>
+  <ul>
+    <li><strong>Menu enxuto</strong> &mdash; 5 itens</li>
+    <li><strong>CANDIDATAR</strong> em amarelo, sempre visivel</li>
+    <li><strong>Ticker</strong> de cotacoes no rodape</li>
+    <li><strong>5 idiomas</strong> no topo direito</li>
+  </ul>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="10 de 25">
+  <span class="divisor">UI &mdash; Wireframe</span>
+  <h2>Wireframe da Home</h2>
+  <div class="wireframe">
+    <div class="wire-block verde">Header: Logo &middot; Menu &middot; CANDIDATAR &middot; PT</div>
+    <div class="wire-block destaque" style="padding:2rem 1rem">HERO com tagline + 2 CTAs + particulas</div>
+    <div class="wire-block">6 cards de linhas de atuacao</div>
+    <div class="wire-block">Para quem trabalhamos (5 setores)</div>
+    <div class="wire-block">4 diferenciais competitivos</div>
+    <div class="wire-block">Estatisticas animadas (120 &middot; 45 &middot; 98% &middot; 8)</div>
+    <div class="wire-block">3 cases com numeros grandes</div>
+    <div class="wire-block">Quem lidera (4 perfis)</div>
+    <div class="wire-block destaque">CTA final: Solicitar diagnostico</div>
+    <div class="wire-block verde">Rodape: ticker + 4 colunas + CNPJ</div>
+  </div>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="11 de 25">
+  <span class="divisor">UI &mdash; Wireframe</span>
+  <h2>Wireframe das paginas internas</h2>
+  <div class="cards-2">
+    <div>
+      <h3>Sobre</h3>
+      <div class="wireframe">
+        <div class="wire-block verde">Header</div>
+        <div class="wire-block destaque">Titulo</div>
+        <div class="wire-block">Quem somos + Missao/Visao/Valores</div>
+        <div class="wire-block">Diferenciais + Stack</div>
+        <div class="wire-block">FAQ (accordion)</div>
+        <div class="wire-block verde">Rodape</div>
+      </div>
+    </div>
+    <div>
+      <h3>Contato</h3>
+      <div class="wireframe">
+        <div class="wire-block verde">Header</div>
+        <div class="wire-block destaque">Fale Conosco</div>
+        <div class="wire-block">Form + Aside informacoes</div>
+        <div class="wire-block">Mapa OpenStreetMap</div>
+        <div class="wire-block verde">Rodape</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="12 de 25">
+  <span class="divisor">UI &mdash; Wireframe + Teste</span>
+  <h2>Wireframe de Carreiras e testes</h2>
+  <div class="wireframe">
+    <div class="wire-block verde">Header com CANDIDATAR</div>
+    <div class="wire-block destaque">Titulo: Trabalhe na Biocruz</div>
+    <div class="wire-block">6 vagas em cards</div>
+    <div class="wire-block">6 beneficios</div>
+    <div class="wire-block destaque">Formulario em 3 secoes</div>
+    <div class="wire-block verde">Rodape</div>
+  </div>
+  <h3>Achados do teste (5 usuarios)</h3>
+  <ul>
+    <li>CTA do hero: "Nossas Solucoes" &rarr; "Ver Solucoes"</li>
+    <li>Menu ganhou botao amarelo CANDIDATAR</li>
+    <li>Form de contato ganhou select de setor</li>
+    <li>Rodape ganhou WhatsApp clicavel</li>
+    <li>Form de vaga auto-seleciona ao clicar no card</li>
+  </ul>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="13 de 25">
+  <span class="divisor">UI &mdash; Design</span>
+  <h2>Principios de UI</h2>
+  <div class="cards-3">
+    <div class="card"><div class="card-icon">📐</div><h3>Hierarquia visual</h3><p>Titulos em verde-escuro, CTAs em amarelo.</p></div>
+    <div class="card"><div class="card-icon">🎨</div><h3>Contraste</h3><p>Cores em WCAG AA.</p></div>
+    <div class="card"><div class="card-icon">⬜</div><h3>Espaco em branco</h3><p>Respiro entre blocos.</p></div>
+    <div class="card"><div class="card-icon">✍️</div><h3>Tipografia</h3><p>Inter em escala fluida com clamp().</p></div>
+    <div class="card"><div class="card-icon">👆</div><h3>Feedback</h3><p>Hover, focus, active e pressed.</p></div>
+    <div class="card"><div class="card-icon">🔁</div><h3>Consistencia</h3><p>Componentes reutilizados.</p></div>
+  </div>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="14 de 25">
+  <span class="divisor">UI &mdash; Identidade Visual</span>
+  <h2>Paleta de cores</h2>
+  <div class="cards-4">
+    <div class="card" style="border-top-color:#0f5132"><div style="height:60px;background:#0f5132;border-radius:8px;margin-bottom:1rem"></div><h3>#0f5132</h3><p>Verde escuro &mdash; confianca</p></div>
+    <div class="card" style="border-top-color:#1a7f4b"><div style="height:60px;background:#1a7f4b;border-radius:8px;margin-bottom:1rem"></div><h3>#1a7f4b</h3><p>Verde principal</p></div>
+    <div class="card" style="border-top-color:#f7c948"><div style="height:60px;background:#f7c948;border-radius:8px;margin-bottom:1rem"></div><h3>#f7c948</h3><p>Amarelo &mdash; destaque</p></div>
+    <div class="card" style="border-top-color:#e4e9e6"><div style="height:60px;background:#fff;border:1px solid #e4e9e6;border-radius:8px;margin-bottom:1rem"></div><h3>#ffffff</h3><p>Branco &mdash; clareza</p></div>
+  </div>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="15 de 25">
+  <span class="divisor">UI &mdash; Design System</span>
+  <h2>Tokens e componentes</h2>
+  <pre><code><span class="cmt">/* Variaveis reutilizadas em todo o site */</span>
+<span class="key">:root</span> {
+  <span class="key">--verde-escuro</span>: <span class="str">#0f5132</span>;
+  <span class="key">--verde</span>:        <span class="str">#1a7f4b</span>;
+  <span class="key">--amarelo</span>:      <span class="str">#f7c948</span>;
+  <span class="key">--sombra</span>: <span class="str">0 12px 40px rgba(10,61,41,.12)</span>;
+  <span class="key">--radius</span>:    <span class="str">16px</span>;
+  <span class="key">--radius-lg</span>: <span class="str">24px</span>;
+  <span class="key">--t</span>: <span class="str">.35s cubic-bezier(.4,0,.2,1)</span>;
+}</code></pre>
+  <p>Componentes: <strong>botao</strong>, <strong>card</strong>, <strong>tag</strong>, <strong>input</strong>, <strong>accordion</strong>, <strong>ticker</strong>.</p>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="16 de 25">
+  <span class="divisor">Desenvolvimento</span>
+  <h2>Checklist dos requisitos</h2>
+  <table>
+    <thead><tr><th>#</th><th>Requisito</th><th>Onde</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Pagina inicial</td><td>index.html</td><td class="ok">OK</td></tr>
+      <tr><td>2</td><td>Menu de navegacao</td><td>Header fixo</td><td class="ok">OK</td></tr>
+      <tr><td>3</td><td>HTML semantico</td><td>header, nav, section</td><td class="ok">OK</td></tr>
+      <tr><td>4</td><td>Estilizacao CSS</td><td>style.css</td><td class="ok">OK</td></tr>
+      <tr><td>5</td><td>Layout responsivo</td><td>768px e 480px</td><td class="ok">OK</td></tr>
+      <tr><td>6</td><td>2+ funcionalidades JS</td><td>16 implementadas</td><td class="ok">OK</td></tr>
+      <tr><td>7</td><td>Formulario validado</td><td>Contato + Candidatura</td><td class="ok">OK</td></tr>
+      <tr><td>8</td><td>Acessibilidade</td><td>ARIA + foco + teclado</td><td class="ok">OK</td></tr>
+      <tr><td>9</td><td>Testes</td><td>TESTES.md</td><td class="ok">OK</td></tr>
+      <tr><td>10</td><td>Codigo organizado</td><td>css/, js/, img/</td><td class="ok">OK</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="17 de 25">
+  <span class="divisor">Desenvolvimento &mdash; HTML</span>
+  <h2>HTML &mdash; estrutura semantica</h2>
+  <pre><code>&lt;<span class="key">header</span> class="header"&gt;
+  &lt;<span class="key">nav</span> class="navbar" <span class="fn">aria-label</span>="Navegacao principal"&gt;
+    &lt;<span class="key">a</span> href="index.html" class="logo"&gt;Bio&lt;<span class="key">span</span>&gt;cruz&lt;/<span class="key">span</span>&gt;&lt;/<span class="key">a</span>&gt;
+
+    &lt;<span class="key">button</span> class="menu-toggle"
+            <span class="fn">aria-label</span>="Abrir menu"
+            <span class="fn">aria-expanded</span>="false"
+            <span class="fn">aria-controls</span>="menu-principal"&gt;
+      &lt;<span class="key">span</span>&gt;&lt;/<span class="key">span</span>&gt;
+    &lt;/<span class="key">button</span>&gt;
+
+    &lt;<span class="key">ul</span> class="nav-links" id="menu-principal"&gt;
+      &lt;<span class="key">li</span>&gt;&lt;<span class="key">a</span> href="carreiras.html" class="btn-candidatar"&gt;
+        CANDIDATAR
+      &lt;/<span class="key">a</span>&gt;&lt;/<span class="key">li</span>&gt;
+    &lt;/<span class="key">ul</span>&gt;
+  &lt;/<span class="key">nav</span>&gt;
+&lt;/<span class="key">header</span>&gt;</code></pre>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="18 de 25">
+  <span class="divisor">Desenvolvimento &mdash; CSS</span>
+  <h2>CSS &mdash; 10 secoes organizadas</h2>
+  <ol style="columns:2;column-gap:3rem;margin-left:1.5rem">
+    <li>Reset e variaveis</li>
+    <li>Componentes</li>
+    <li>Cabecalho</li>
+    <li>Carrossel</li>
+    <li>Secoes</li>
+    <li>Projetos</li>
+    <li>Contato</li>
+    <li>Rodape</li>
+    <li>Acessibilidade</li>
+    <li>Responsividade</li>
+  </ol>
+  <pre><code>.<span class="fn">btn</span> {
+  display: inline-flex;
+  min-height: 52px;
+  padding: 0 1.75rem;
+  border-radius: 14px;
+  transition: var(--t);
+  position: relative;
+  overflow: hidden;
+}
+.<span class="fn">btn-primary</span> { background: var(--verde); color: #fff }
+.<span class="fn">btn</span>:active { transform: scale(.97) }</code></pre>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="19 de 25">
+  <span class="divisor">Desenvolvimento &mdash; CSS</span>
+  <h2>CSS &mdash; responsividade</h2>
+  <div class="cards-3">
+    <div class="card"><h3>Desktop</h3><p>Grid 3-4 colunas, menu horizontal.</p></div>
+    <div class="card"><h3>Tablet (≤768px)</h3><p>Menu hamburguer, 1 coluna.</p></div>
+    <div class="card"><h3>Mobile (≤480px)</h3><p>Botoes full-width, rodape centralizado.</p></div>
+  </div>
+  <pre><code><span class="key">@media</span> (max-width: 768px) {
+  .menu-toggle { display: flex }
+  .nav-links { display: none; flex-direction: column }
+  .nav-links.open { display: flex }
+  .grid-projetos { grid-template-columns: 1fr }
+}</code></pre>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="20 de 25">
+  <span class="divisor">Desenvolvimento &mdash; JavaScript</span>
+  <h2>16 funcionalidades interativas</h2>
+  <p>O enunciado pedia <strong>no minimo 2</strong>. Entregamos <strong>16</strong>:</p>
+  <div class="cards-4">
+    <div class="card"><div class="card-icon">☰</div><h3>1. Menu mobile</h3><p>Acessivel com aria-expanded</p></div>
+    <div class="card"><div class="card-icon">📊</div><h3>2. Barra progresso</h3><p>Enche conforme scroll</p></div>
+    <div class="card"><div class="card-icon">🌫️</div><h3>3. Sombra header</h3><p>Ao rolar +20px</p></div>
+    <div class="card"><div class="card-icon">🖱️</div><h3>4. Cursor custom</h3><p>Verde + amarelo</p></div>
+  </div>
+  <div class="cards-4">
+    <div class="card"><div class="card-icon">✨</div><h3>5. Particulas</h3><p>Canvas com 60 pontos</p></div>
+    <div class="card"><div class="card-icon">🎬</div><h3>6. Scroll reveal</h3><p>Elementos surgem</p></div>
+    <div class="card"><div class="card-icon">🖼️</div><h3>7. Carrossel</h3><p>Auto + swipe + teclado</p></div>
+    <div class="card"><div class="card-icon">🔢</div><h3>8. Contador</h3><p>Easing exponencial</p></div>
+  </div>
+  <div class="cards-4">
+    <div class="card"><div class="card-icon">📂</div><h3>9. Accordion</h3><p>FAQ sanfona</p></div>
+    <div class="card"><div class="card-icon">🎯</div><h3>10. Filtro</h3><p>Por categoria</p></div>
+    <div class="card"><div class="card-icon">🧊</div><h3>11. Tilt 3D</h3><p>Cards seguem mouse</p></div>
+    <div class="card"><div class="card-icon">💧</div><h3>12. Ripple</h3><p>Onda nos botoes</p></div>
+  </div>
+  <div class="cards-4">
+    <div class="card"><div class="card-icon">⬆️</div><h3>13. Voltar ao topo</h3><p>Apos 500px</p></div>
+    <div class="card"><div class="card-icon">✉️</div><h3>14. Valid. contato</h3><p>Regex + aria-live</p></div>
+    <div class="card"><div class="card-icon">📋</div><h3>15. Valid. vaga</h3><p>CPF + LGPD + upload</p></div>
+    <div class="card"><div class="card-icon">⚡</div><h3>16. Modo leve</h3><p>Desliga efeitos</p></div>
+  </div>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="21 de 25">
+  <span class="divisor">Desenvolvimento &mdash; JavaScript</span>
+  <h2>Tres trechos comentados</h2>
+  <h3>1. Validacao de CPF com digitos verificadores</h3>
+  <pre><code><span class="cmt">// Valida CPF testando os dois digitos</span>
+<span class="key">const</span> <span class="fn">cpfValido</span> = cpf =&gt; {
+  cpf = cpf.<span class="fn">replace</span>(/\D/g, <span class="str">''</span>);
+  <span class="key">if</span> (cpf.length !== <span class="str">11</span> ||
+      /^(\d)\1+$/.<span class="fn">test</span>(cpf)) <span class="key">return</span> <span class="str">false</span>;
+  <span class="key">let</span> s = <span class="str">0</span>;
+  <span class="key">for</span> (<span class="key">let</span> i = <span class="str">0</span>; i &lt; <span class="str">9</span>; i++)
+    s += <span class="fn">parseInt</span>(cpf[i]) * (<span class="str">10</span> - i);
+  <span class="key">let</span> d1 = <span class="str">11</span> - (s % <span class="str">11</span>);
+  <span class="key">if</span> (d1 &gt;= <span class="str">10</span>) d1 = <span class="str">0</span>;
+  <span class="key">if</span> (d1 !== <span class="fn">parseInt</span>(cpf[<span class="str">9</span>])) <span class="key">return</span> <span class="str">false</span>;
+  <span class="cmt">// ... segundo digito</span>
+  <span class="key">return</span> <span class="str">true</span>;
+};</code></pre>
+  <h3>2. IntersectionObserver do contador</h3>
+  <pre><code><span class="cmt">// Anima o numero apenas quando entra na tela</span>
+<span class="key">const</span> io = <span class="key">new</span> <span class="fn">IntersectionObserver</span>(entries =&gt; {
+  entries.<span class="fn">forEach</span>(entry =&gt; {
+    <span class="key">if</span> (!entry.isIntersecting) <span class="key">return</span>;
+    <span class="key">const</span> alvo = +el.dataset.target;
+    <span class="key">const</span> inicio = performance.<span class="fn">now</span>();
+    <span class="key">const</span> animar = agora =&gt; {
+      <span class="key">const</span> p = Math.<span class="fn">min</span>((agora - inicio) / <span class="str">1800</span>, <span class="str">1</span>);
+      <span class="cmt">// easing easeOutExpo</span>
+      <span class="key">const</span> eased = p === <span class="str">1</span> ? <span class="str">1</span> : <span class="str">1</span> - Math.<span class="fn">pow</span>(<span class="str">2</span>, -<span class="str">10</span> * p);
+      el.textContent = Math.<span class="fn">floor</span>(eased * alvo);
+      <span class="key">if</span> (p &lt; <span class="str">1</span>) <span class="fn">requestAnimationFrame</span>(animar);
+    };
+    <span class="fn">requestAnimationFrame</span>(animar);
+  });
+}, { threshold: <span class="str">.5</span> });</code></pre>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="22 de 25">
+  <span class="divisor">Desenvolvimento &mdash; Integracoes</span>
+  <h2>Integracoes externas</h2>
+  <div class="cards-2">
+    <div class="card" style="border-top-color:var(--verde)">
+      <div class="card-icon">🌾</div>
+      <h3>Ticker de commodities agro</h3>
+      <p><strong>API:</strong> agrodocai.com.br/api/v1/cotacao</p>
+      <p><strong>Tipo:</strong> Publica, sem chave</p>
+      <p><strong>Dados:</strong> boi gordo, soja, milho, vaca gorda</p>
+      <p><strong>Fonte:</strong> CEPEA/ESALQ + Scot Consultoria</p>
+      <p><strong>Atualiza:</strong> a cada 10 minutos</p>
+      <p><strong>Fallback:</strong> exibe "Indisponiveis"</p>
+    </div>
+    <div class="card" style="border-top-color:var(--amarelo)">
+      <div class="card-icon">🌍</div>
+      <h3>Sistema de idiomas (i18n)</h3>
+      <p><strong>5 idiomas:</strong> PT &middot; EN &middot; JA &middot; ZH &middot; AR</p>
+      <p><strong>Mecanismo:</strong> atributo data-i18n + dicionario JS</p>
+      <p><strong>RTL:</strong> automatico para arabe</p>
+      <p><strong>Preferencia:</strong> salva em localStorage</p>
+    </div>
+  </div>
+  <pre><code><span class="cmt">// Busca cotacoes da API publica</span>
+<span class="key">async function</span> <span class="fn">carregar</span>() {
+  <span class="key">try</span> {
+    <span class="key">const</span> resp = <span class="key">await</span> <span class="fn">fetch</span>(
+      <span class="str">'https://agrodocai.com.br/api/v1/cotacao'</span>
+    );
+    <span class="key">if</span> (!resp.ok) <span class="key">throw new</span> <span class="fn">Error</span>(<span class="str">'HTTP '</span> + resp.status);
+    <span class="key">const</span> dados = <span class="key">await</span> resp.<span class="fn">json</span>();
+    <span class="cmt">// ...renderiza os itens</span>
+  } <span class="key">catch</span> (e) {
+    <span class="cmt">// Fallback silencioso</span>
+    track.innerHTML = <span class="str">'Indisponiveis'</span>;
+  }
+}</code></pre>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="23 de 25">
+  <span class="divisor">Testes e Acessibilidade</span>
+  <h2>Acessibilidade WCAG 2.1 AA</h2>
+  <div class="cards-3">
+    <div class="card"><div class="card-icon">⌨️</div><h3>Navegacao por teclado</h3><p>Tab, Enter e setas no carrossel.</p></div>
+    <div class="card"><div class="card-icon">👁️</div><h3>Foco visivel</h3><p>Contorno amarelo de 3px.</p></div>
+    <div class="card"><div class="card-icon">🔊</div><h3>ARIA completo</h3><p>aria-label, aria-expanded, aria-live.</p></div>
+    <div class="card"><div class="card-icon">🖼️</div><h3>Alt descritivo</h3><p>Imagens com descricao util.</p></div>
+    <div class="card"><div class="card-icon">🎬</div><h3>prefers-reduced-motion</h3><p>Animacoes desligadas.</p></div>
+    <div class="card"><div class="card-icon">⚡</div><h3>Modo leve</h3><p>Desliga particulas e cursor.</p></div>
+  </div>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="24 de 25">
+  <span class="divisor">Testes e Acessibilidade</span>
+  <h2>Testes realizados</h2>
+  <table>
+    <thead><tr><th>#</th><th>Caso testado</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Abrir home e ver carrossel + servicos</td><td class="ok">OK</td></tr>
+      <tr><td>2</td><td>Navegar entre todas as paginas</td><td class="ok">OK</td></tr>
+      <tr><td>3</td><td>Carrossel avanca sozinho apos 5s</td><td class="ok">OK</td></tr>
+      <tr><td>4</td><td>Swipe horizontal (mobile)</td><td class="ok">OK</td></tr>
+      <tr><td>5</td><td>Teclas &larr; &rarr; no carrossel</td><td class="ok">OK</td></tr>
+      <tr><td>6</td><td>Menu hamburguer em ≤768px</td><td class="ok">OK</td></tr>
+      <tr><td>7</td><td>Contador anima ao rolar</td><td class="ok">OK</td></tr>
+      <tr><td>8</td><td>Accordion abre/fecha itens</td><td class="ok">OK</td></tr>
+      <tr><td>9</td><td>Filtro de projetos</td><td class="ok">OK</td></tr>
+      <tr><td>10</td><td>Form vazio exibe erros</td><td class="ok">OK</td></tr>
+      <tr><td>11</td><td>E-mail invalido rejeitado</td><td class="ok">OK</td></tr>
+      <tr><td>12</td><td>CPF com digitos errados rejeitado</td><td class="ok">OK</td></tr>
+      <tr><td>13</td><td>Upload &gt; 5MB bloqueado</td><td class="ok">OK</td></tr>
+      <tr><td>14</td><td>LGPD obrigatorio valida</td><td class="ok">OK</td></tr>
+      <tr><td>15</td><td>Layout em 375px sem quebra</td><td class="ok">OK</td></tr>
+    </tbody>
+  </table>
+  <h3>Correcoes aplicadas</h3>
+  <ul>
+    <li>Swipe do carrossel conflitava com scroll &rarr; <code>touch-action: pan-y</code></li>
+    <li>Amarelo sobre branco com baixo contraste &rarr; criado <code>--amarelo-esc</code></li>
+    <li>Menu mobile nao fechava &rarr; handler nos links</li>
+    <li>Foco invisivel &rarr; <code>:focus-visible</code> global</li>
+    <li>Form nao focava no erro &rarr; <code>?.focus()</code></li>
+  </ul>
+</section>
+
+<section class="slide" aria-roledescription="slide" aria-label="25 de 25">
+  <span class="divisor">Encerramento</span>
+  <h2>Como executar e conclusao</h2>
+  <h3>Executar o site</h3>
+  <pre><code><span class="cmt"># Entrar na pasta do projeto</span>
+<span class="fn">cd</span> ~/biocruz
+
+<span class="cmt"># Subir o servidor na porta 8001</span>
+<span class="fn">python3</span> -m http.server 8001
+
+<span class="cmt"># Acessar no navegador</span>
+<span class="cmt"># http://localhost:8001</span>
+
+<span class="cmt"># Ou abrir direto no WebStorm</span>
+<span class="fn">webstorm</span> .</code></pre>
+
+  <h3>O que foi entregue</h3>
+  <div class="cards-3">
+    <div class="card"><h3>Site completo</h3><p>5 paginas + politica de privacidade</p></div>
+    <div class="card"><h3>16 funcionalidades JS</h3><p>O dobro do exigido</p></div>
+    <div class="card"><h3>API real</h3><p>Ticker de commodities agro</p></div>
+    <div class="card"><h3>5 idiomas</h3><p>Com suporte a RTL</p></div>
+    <div class="card"><h3>Acessibilidade</h3><p>WCAG 2.1 AA</p></div>
+    <div class="card"><h3>Documentacao</h3><p>README + TESTES + apresentacao</p></div>
+  </div>
+
+  <h3>Evolucoes futuras</h3>
+  <ul>
+    <li>Backend real (Node.js ou Python)</li>
+    <li>Banco de dados para candidaturas</li>
+    <li>Area restrita com autenticacao</li>
+    <li>Blog tecnico para SEO</li>
+    <li>Versao em ingles 100% completa</li>
+  </ul>
+</section>
+</div>
+<button class="btn-print" onclick="window.print()">🖨️ Imprimir / PDF</button>
+<div class="controles" role="group" aria-label="Navegacao">
+  <button class="btn-nav" id="btnPrev" aria-label="Slide anterior">&lsaquo;</button>
+  <span class="contador" id="contador" aria-live="polite">1 / 25</span>
+  <button class="btn-nav" id="btnNext" aria-label="Proximo slide">&rsaquo;</button>
+</div>
+<script>
+(function(){
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  const contador = document.getElementById('contador');
+  const progresso = document.getElementById('progresso');
+  const btnPrev = document.getElementById('btnPrev');
+  const btnNext = document.getElementById('btnNext');
+  let idx = 0;
+  function irPara(i){
+    idx = (i + total) % total;
+    slides.forEach((s,k)=>s.classList.toggle('active', k===idx));
+    contador.textContent = (idx+1) + ' / ' + total;
+    progresso.style.width = ((idx+1)/total*100) + '%';
+    btnPrev.disabled = idx===0;
+    btnNext.disabled = idx===total-1;
+  }
+  document.getElementById('btnNext').onclick = ()=>irPara(idx+1);
+  document.getElementById('btnPrev').onclick = ()=>irPara(idx-1);
+  document.addEventListener('keydown', e=>{
+    if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();irPara(idx+1)}
+    if(e.key==='ArrowLeft'){e.preventDefault();irPara(idx-1)}
+    if(e.key==='Home')irPara(0);
+    if(e.key==='End')irPara(total-1);
+  });
+  let x0=null;
+  document.addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(x0===null)return;
+    const dx=e.changedTouches[0].clientX-x0;
+    if(Math.abs(dx)>50){dx<0?irPara(idx+1):irPara(idx-1)}
+    x0=null;
+  },{passive:true});
+  document.querySelector('.deck').addEventListener('click',e=>{
+    if(e.target.closest('a,button'))return;
+    irPara(idx+1);
+  });
+  irPara(0);
+})();
+</script>
+</body>
+</html>
